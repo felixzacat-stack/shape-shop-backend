@@ -11,6 +11,8 @@ This README consists of three parts.
 
 
 
+
+
 # 1. Running the application within the IDE against the DB in a docker container
 
 To run the database :
