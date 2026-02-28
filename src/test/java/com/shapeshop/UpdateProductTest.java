@@ -3,13 +3,16 @@ package com.shapeshop;
 
 import com.shapeshop.config.ShapeShopTest;
 import org.json.JSONObject;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+//import org.junit.After;
+//import org.junit.Before;
+//import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import org.junit.jupiter.api.Test;
+
 
 import java.sql.SQLException;
 
@@ -45,7 +48,7 @@ public class UpdateProductTest extends ShapeShopTest {
     }
 
     //TODO this test will fail if ALL tests are run. See super class for teardown TODO
-    @org.junit.Test
+    @Test
     public void updateProductName() throws Exception {
 
         //update name
@@ -73,7 +76,7 @@ public class UpdateProductTest extends ShapeShopTest {
     }
 
 
-    @org.junit.Test
+    @Test
     public void updateWrongProduct() throws Exception {
 
         //update product (2) that exists in carls cafe. But updating in annies art.

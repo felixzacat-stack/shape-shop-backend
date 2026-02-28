@@ -12,11 +12,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
-
+import org.junit.jupiter.api.Test;
 
 public class OrdersTest extends ShapeShopTest {
 
-    @org.junit.Test
+    @Test
     public void placeOrder() throws Exception {
 
         String token = authenticate("admin", "admin");
@@ -48,7 +48,7 @@ public class OrdersTest extends ShapeShopTest {
         JSONAssert.assertEquals(expectedArray, recievedArray, JSONCompareMode.LENIENT);
     }
 
-    @org.junit.Test
+    @Test
     public void placeOrderWrongProdId() throws Exception {
 
         String orderJSON = getNewOrderJSON();

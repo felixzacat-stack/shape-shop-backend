@@ -11,10 +11,12 @@ import com.shapeshop.repository.*;
 import com.shapeshop.security.PasswordUtils;
 import com.shapeshop.service.CategoryService;
 import com.shapeshop.service.ProductService;
+import org.aspectj.lang.annotation.Before;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.Before;
-import org.junit.runner.RunWith;
+//import org.junit.Before;
+//import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,7 +31,7 @@ import org.springframework.test.web.servlet.result.StatusResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import javax.sql.DataSource;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -39,11 +41,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+//import static org.junit.jupiter.assertNotNull;
 
 
 @EnableWebMvc
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public abstract class ShapeShopTest {
@@ -94,7 +98,7 @@ public abstract class ShapeShopTest {
 
     protected StatusResultMatchers matcher = MockMvcResultMatchers.status();
 
-    @Before
+    @BeforeEach
     public void before() throws Exception{
 
         clearDatabase();

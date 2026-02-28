@@ -7,11 +7,11 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
+import org.junit.jupiter.api.Test;
 
 public class ProductTest extends ShapeShopTest {
 
-    @org.junit.Test
+    @Test
     public void getProducts() throws Exception {
 
         ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/carlscafe/products")).andExpect(matcher.isOk());

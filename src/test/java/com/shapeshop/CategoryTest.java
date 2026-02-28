@@ -4,18 +4,20 @@ import com.shapeshop.config.ShapeShopTest;
 import lombok.val;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+
+import org.junit.jupiter.api.Test;
 
 import java.util.logging.Level;
 
 
 public class CategoryTest extends ShapeShopTest {
 
-    @org.junit.Test
+    @Test
     public void getCategories() throws Exception {
 
         ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/carlscafe/categories")).andExpect(matcher.isOk());
@@ -32,7 +34,7 @@ public class CategoryTest extends ShapeShopTest {
     }
 
 
-    @org.junit.Test
+    @Test
     public void getProductsForCategory() throws Exception {
 
         ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/carlscafe/main/products")).andExpect(matcher.isOk());
@@ -48,7 +50,7 @@ public class CategoryTest extends ShapeShopTest {
                 expectedArray, recievedArray, JSONCompareMode.LENIENT);
     }
 
-    @org.junit.Test
+    @Test
     public void createCategory() throws Exception {
 
         String token = authenticate("admin", "admin");
@@ -72,7 +74,7 @@ public class CategoryTest extends ShapeShopTest {
                 expectedArray, recievedArray, JSONCompareMode.LENIENT);
     }
 
-    @org.junit.Test
+    @Test
     public void updateCategory() throws Exception {
         //TODO
         //auth
@@ -119,7 +121,7 @@ public class CategoryTest extends ShapeShopTest {
 
 
 
-    @org.junit.Test
+    @Test
     public void deleteCategory() throws Exception {
         //auth
         String token = authenticate("admin", "admin");

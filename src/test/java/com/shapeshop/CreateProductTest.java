@@ -4,7 +4,7 @@ package com.shapeshop;
 import com.shapeshop.config.ShapeShopTest;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.test.web.servlet.MvcResult;
@@ -31,7 +31,7 @@ public class CreateProductTest extends ShapeShopTest {
 
     }
 
-    @org.junit.Test
+    @Test
     public void deleteProduct() throws Exception {
 
         ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/carlscafe/products")).andExpect(matcher.isOk());

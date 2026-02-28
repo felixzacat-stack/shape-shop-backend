@@ -6,7 +6,7 @@ import lombok.Setter;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Getter
 @Setter

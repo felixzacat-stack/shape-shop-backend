@@ -2,7 +2,7 @@ package com.shapeshop;
 
 import com.shapeshop.config.ShapeShopTest;
 //import com.shapeshop.config.TestConfig;
-import org.junit.runner.RunWith;
+//import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,15 +16,18 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.result.StatusResultMatchers;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests authentication and authorization.
  */
 //@Import(TestConfig.class)
 @EnableWebMvc
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 @SpringBootTest
 @AutoConfigureMockMvc
 public class AuthenticationHTTPTests extends ShapeShopTest {
@@ -34,7 +37,7 @@ public class AuthenticationHTTPTests extends ShapeShopTest {
     private MockMvc mvc;
 
 
-    @org.junit.Test
+    @Test
     public void shouldNotAuth() throws Exception {
 
         // forbidden. 403 - private endpoint
@@ -50,7 +53,7 @@ public class AuthenticationHTTPTests extends ShapeShopTest {
     }
 
 
-    @org.junit.Test
+    @Test
     public void shouldAuthUser() throws Exception {
     	String requestJson = "{\"username\": \"user\",\"password\": \"user\"}";
 
@@ -78,7 +81,7 @@ public class AuthenticationHTTPTests extends ShapeShopTest {
     }
 
 
-    @org.junit.Test
+    @Test
     public void shouldAuthAdmin() throws Exception {
 
     	String requestJson = "{\"username\": \"admin\",\"password\": \"admin\"}";

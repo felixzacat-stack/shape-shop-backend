@@ -4,7 +4,7 @@
 
 
 #### Stage 1: Build the application
-FROM openjdk:11 as build
+FROM openjdk:23 as build
 
 # Set the current working directory inside the image
 WORKDIR /app
