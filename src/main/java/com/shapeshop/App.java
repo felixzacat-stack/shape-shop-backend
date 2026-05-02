@@ -52,6 +52,9 @@ public class App {
 				System.out.println(":: Shape Shop :: v.1.0 (Copyright Oliver Watkins)");
 				System.out.println("");
 				System.out.println("");
+				System.out.println("Test if reaching the app over controller : http://localhost:8080/test ");
+				System.out.println("Test products for one of the companies : http://localhost:8080/alpenhof/products ");
+
 			}else {
 				System.err.println("No company data found for higgins");
 			}

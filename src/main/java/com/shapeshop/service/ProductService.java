@@ -71,7 +71,7 @@ public class ProductService {
     }
 
     /**
-     * @deprecated can only create product with a cat
+     * @Deprecated can only create product with a cat
      */
     public ProductEntity createProduct(ProductEntity product, String companyName) throws ShapeShopException {
 
