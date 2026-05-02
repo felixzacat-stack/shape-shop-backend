@@ -48,12 +48,11 @@ public class AuthenticationController {
             String pswd = authenticationRequest.getPassword();
             String uName = authenticationRequest.getUsername();
 
-            String encryptedPswd = passwordValidationService.encryptPassword(pswd);
-
-            UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+            // DON'T hash the password here - let Spring Security handle it with your custom encoder
+            // String encryptedPswd = passwordValidationService.encryptPassword(pswd);
 
             Authentication authentication = authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(uName, encryptedPswd, userDetails.getAuthorities()));
+                    .authenticate(new UsernamePasswordAuthenticationToken(uName, pswd)); // Use raw password
 
             String jwtToken = jwtTokenUtil.createToken(authentication);
 

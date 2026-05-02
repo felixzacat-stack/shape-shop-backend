@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import javax.crypto.SecretKey;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,12 +20,13 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-
+import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtUtil {
 
-	private static String SECRET_KEY = "secret";
+	// Generate a secure key for HS256 algorithm
+	private static final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 	public static final long ACCESS_TOKEN_VALIDITY_SECONDS = 5 * 60 * 60;
 	public static final String AUTHORITIES_KEY = "scopes";
 
@@ -35,13 +38,11 @@ public class JwtUtil {
 				.collect(Collectors.joining(","));
 
 		return Jwts.builder().setSubject(authentication.getName()).claim(AUTHORITIES_KEY, authorities)
-				.signWith(SignatureAlgorithm.HS256, SECRET_KEY).setIssuedAt(new Date(System.currentTimeMillis()))
+				.signWith(SECRET_KEY).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_VALIDITY_SECONDS * 1000)).compact();
 	}
 
-
 	public Boolean validateToken(String token, UserDetails userDetails) {
-
 		String username = extractClaim(token, Claims::getSubject);
 		Date exp = extractClaim(token, Claims::getExpiration);
 
@@ -49,14 +50,14 @@ public class JwtUtil {
 	}
 
 	public static <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-		final Claims claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+		final Claims claims = Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token).getBody();
 		return claimsResolver.apply(claims);
 	}
 
 	public UsernamePasswordAuthenticationToken getAuthentication(final String token, final Authentication existingAuth,
-			final UserDetails userDetails) {
+																 final UserDetails userDetails) {
 
-		final JwtParser jwtParser = Jwts.parser().setSigningKey(SECRET_KEY);
+		final JwtParser jwtParser = Jwts.parserBuilder().setSigningKey(SECRET_KEY).build();
 
 		final Jws<Claims> claimsJws = jwtParser.parseClaimsJws(token);
 
@@ -72,8 +73,4 @@ public class JwtUtil {
 
 		return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
 	}
-
-
-
-
 }
